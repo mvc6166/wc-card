@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="Description" content="Put your description here.">
+  <base href="/">
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ededed;
+    }
+  </style>
+  <title>wc-card</title>
+</head>
+
+<body>
+  <div class="buttons">
+    <button class="dupe">Duplicate</button>
+    <button class="technicolor">Change Card Background Color</button>
+    <button class="retitling">Change Title Text</button>
+    <button class="undupe">Delete Recent Card</button>
+    <button data-toggle-btn>Show the Deets</button>
+  </div>
+
+  <div id="app">
+    <wc-card></wc-card>
+  </div>
+
+  <script type="module" src="./src/wc-card.js"></script>
+  <script>
+    document.querySelector('.dupe').addEventListener('click', (e) => {
+   const doop = document.querySelector('wc-card').cloneNode();
+   document.body.appendChild(doop);
+  });
+  
+document.querySelector('.technicolor').addEventListener('click', (e) => {
+  const crd = document.querySelector('.card');
+  const clr = crd.style.backgroundColor;
+  
+  if (clr === 'cyan') {
+    crd.style.backgroundColor = 'lightgreen';
+  } else {
+    crd.style.backgroundColor = 'cyan';
+  }
+});
+
+document.querySelector('.retitling').addEventListener('click', (e) => {
+  let title = prompt("Retitle Card to...");
+  if (title) {
+    document.querySelector('wc-card').title = title;
+  }
+});
+
+document.querySelector('.undupe').addEventListener('click', (e) => {
+  const allcards = document.querySelectorAll('.card');  
+  if (allcards.length > 1) {
+    allcards[allcards.length - 1].remove();
+  }
+});
+
+    document.querySelector('button[data-toggle-btn]').addEventListener('click', (e) => {
+      const details = document.querySelector('wc-card').shadowRoot.querySelector('details');
+      if(details.getAttribute('open')) {
+        details.removeAttribute('open');
+      } else {
+        details.setAttribute('open', 'open');
+      }
+    });
+  </script>
+</body>
+
+</html>
