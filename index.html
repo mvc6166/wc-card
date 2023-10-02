@@ -40,7 +40,7 @@
   });
   
 document.querySelector('.technicolor').addEventListener('click', (e) => {
-  const crd = document.querySelector('.card');
+  const crd = document.querySelector('wc-card').shadowRoot.querySelector('.card');
   const clr = crd.style.backgroundColor;
   
   if (clr === 'cyan') {
@@ -58,7 +58,7 @@ document.querySelector('.retitling').addEventListener('click', (e) => {
 });
 
 document.querySelector('.undupe').addEventListener('click', (e) => {
-  const allcards = document.querySelectorAll('.card');  
+  const allcards = document.querySelectorAll('wc-card');  
   if (allcards.length > 1) {
     allcards[allcards.length - 1].remove();
   }
